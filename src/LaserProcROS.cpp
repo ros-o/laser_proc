@@ -39,7 +39,7 @@ LaserProcROS::LaserProcROS(ros::NodeHandle& n, ros::NodeHandle& pnh):nh_(n){
   boost::mutex::scoped_lock lock(connect_mutex_);
   
   // Lazy subscription to multi echo topic
-  pub_ = laser_proc::LaserTransport::advertiseLaser(n, 10, boost::bind(&LaserProcROS::connectCb, this, _1), boost::bind(&LaserProcROS::disconnectCb, this, _1), ros::VoidPtr(), false, false);
+  pub_ = laser_proc::LaserTransport::advertiseLaser(n, 10, [this](auto& pub){ connectCb(pub); }, [this](auto& pub){ disconnectCb(pub); }, ros::VoidPtr(), false, false);
 }
 
 LaserProcROS::~LaserProcROS(){
