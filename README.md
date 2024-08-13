@@ -1,4 +1,3 @@
-laser_proc
-==========
+# unused fork
 
-Converts representations of sensor_msgs/LaserScan and sensor_msgs/MultiEchoLaserScan
+At this point all patches required for ros-o support are available upstream in the `noetic-devel` branch.
